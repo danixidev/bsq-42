@@ -20,7 +20,7 @@ int	area_has_block(struct Map map, struct Area area)
 	int index;
 	int	position;
 
-	index = 0;
+	index = area.position;
 	position = 0;
 	while(index < (map.cols * area.size))
 	{
@@ -47,10 +47,10 @@ int	max_area_pos(struct Map map, int pos)
 	struct Area area;
 
 	size = 0;
-	area.position = pos;
 	while(size < map.cols || size < map.rows)
 	{
 		area.size = size + 1;
+		area.position = pos;
 		if(area_has_block(map, area))
 			break;
 		size++;
@@ -71,24 +71,25 @@ void	solve(struct Map map)
 	struct Area area;
 	struct Area max_area;
 
-	// index = 0;
-	// while (index < (map.rows * map.cols))
-	// {
-	// 	size = max_area_pos(map, index);
+	index = 0;
+	while (index < (map.rows * map.cols))
+	{
+		size = max_area_pos(map, index);
 
-	// 	printf("pos: %d\nsize: %d\n\n", index, size);
-	// 	// if(size > max_area.size)
-	// 	// {
-	// 	// 	max_area.size = size;
-	// 	// 	max_area.position = index;
-	// 	// }
-	// 	index++;
-	// }
+		printf("pos: %d\nsize: %d\n\n", index, size);
+		// if(size > max_area.size)
+		// {
+		// 	max_area.size = size;
+		// 	max_area.position = index;
+		// }
+		index++;
+	}
 
 	// printf("pos: %d\nsize: %d", max_area.position, max_area.size);
-	area.position = 0;
-	area.size = 5;
-	printf("%d", area_has_block(map, area));
+	// area.position = 0;
+	// area.size = 5;
+	// printf("%d", area_has_block(map, area));
+
 }
 
 int main()
