@@ -19,15 +19,22 @@ int	area_has_block(struct Map map, struct Area area)
 {
 	int index;
 	int	position;
+	int max_cols;
+	int max_rows;
 
+	max_cols = map.cols - (area.position % map.cols);
+	max_rows = map.rows - (area.position / map.cols);
 	index = area.position;
 	position = 0;
-	while(index < (map.cols * area.size))
+	if(map.map[index] == 1)
+		return (1);
+	while(index < area.position + (map.cols * area.size))
 	{
 		if(position < area.size)
 		{
-			if(map.map[index] == 1)
+			if(map.map[index] == 1 || area.size > max_cols || area.size > max_rows)
 				return (1);
+			printf("%d", map.map[index]);
 			position++;
 			index++;
 		}
@@ -37,7 +44,6 @@ int	area_has_block(struct Map map, struct Area area)
 			position = 0;
 		}
 	}
-
 	return (0);
 }
 
@@ -47,7 +53,7 @@ int	max_area_pos(struct Map map, int pos)
 	struct Area area;
 
 	size = 0;
-	while(size < map.cols || size < map.rows)
+	while(size < (map.cols - (pos % map.cols)) || size < (map.rows / map.rows))
 	{
 		area.size = size + 1;
 		area.position = pos;
@@ -55,12 +61,6 @@ int	max_area_pos(struct Map map, int pos)
 			break;
 		size++;
 	}
-
-
-	// area.position = pos;
-	// area.size = 3;
-	// area_has_block(map, area);
-
 	return (size);
 }
 
@@ -70,26 +70,33 @@ void	solve(struct Map map)
 	int size;
 	struct Area area;
 	struct Area max_area;
+	int max_size;
+	int	max_pos;
 
 	index = 0;
+	max_size = 0;
 	while (index < (map.rows * map.cols))
 	{
 		size = max_area_pos(map, index);
 
-		printf("pos: %d\nsize: %d\n\n", index, size);
-		// if(size > max_area.size)
-		// {
-		// 	max_area.size = size;
-		// 	max_area.position = index;
-		// }
+		if(size > max_size)
+		{
+			max_size = size;
+			max_pos = index;
+			// max_area.size = size;
+			// max_area.position = index;
+		}
 		index++;
 	}
+	printf("pos: %d\nsize: %d\n\n", max_pos, max_size);
 
-	// printf("pos: %d\nsize: %d", max_area.position, max_area.size);
-	// area.position = 0;
-	// area.size = 5;
+	// printf("%d %d", max_area.size, max_area.position);
+
+	// area.position = 31;
+	// area.size = 1;
 	// printf("%d", area_has_block(map, area));
 
+	// printf("%d", max_area_pos(map, 300));
 }
 
 int main()
@@ -117,5 +124,6 @@ int main()
 	// 	index++;
 	// 	count++;
 	// }
+
 	solve(mapa);
 }
