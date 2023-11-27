@@ -1,10 +1,10 @@
 Funciones:
- - Input por consola / archivo
+ - Input por consola / archivo --> Ana
     - Contar numero de filas y columnas
     - Recibir mapa y notación (9.ox)
     - Guardar mapa en un array unidimensional (caracteres)
 
- - Validación input
+ - Validación input --> Ana
     - Todas las lineas misma longitud
     - Comprobar que hay al menos un obstáculo
     - Salto de linea al final de cada linea
@@ -13,7 +13,7 @@ Funciones:
     - La notación tambien puede ser un dígito
     - Si no es valido > "map error\n"
 
- - Conversión del input
+ - Conversión del input --> Ana
     - Cambiar todos los valores de notación a nuestros valores.
     - Quitar saltos de línea y leyenda
     - Almacenar en un array unidimensional sin espacios
