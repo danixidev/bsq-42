@@ -34,7 +34,6 @@ int	area_has_block(struct Map map, struct Area area)
 		{
 			if(map.map[index] == 1 || area.size > max_cols || area.size > max_rows)
 				return (1);
-			printf("%d", map.map[index]);
 			position++;
 			index++;
 		}
@@ -64,6 +63,29 @@ int	max_area_pos(struct Map map, int pos)
 	return (size);
 }
 
+void paint_solution(struct Map map, struct Area area)
+{
+	int index;
+	char c;
+
+	index = 0;
+	while (index < (map.cols * map.rows))
+	{
+		if(index % map.cols == 0 && index != 0)
+			write(1, "\n", 1);
+		c = map.map[index] + '0';
+
+		if(map.map[index] == 0)
+		{
+			//Logica para pintar X
+			write(1, ".", 1);
+		}
+		else if(map.map[index] == 1)
+			write(1, "o", 1);
+		index++;
+	}
+}
+
 void	solve(struct Map map)
 {
 	int	index;
@@ -90,10 +112,12 @@ void	solve(struct Map map)
 	}
 	printf("pos: %d\nsize: %d\n\n", max_pos, max_size);
 
+	// paint_solution(map, max_area);
+
 	// printf("%d %d", max_area.size, max_area.position);
 
-	// area.position = 31;
-	// area.size = 1;
+	// area.position = 16;
+	// area.size = 7;
 	// printf("%d", area_has_block(map, area));
 
 	// printf("%d", max_area_pos(map, 300));
