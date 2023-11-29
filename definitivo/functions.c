@@ -24,3 +24,41 @@ int	ft_atoi(char *str)
 		result = -result;
 	return ((int)result);
 }
+
+// Función para contar los dígitos de un número entero
+int ft_count_digits(int number) 
+{
+	int counter; 
+	
+	counter = 0;
+    if (number == 0) 
+	{
+		return 1;
+    }
+    if (number < 0) 
+	{
+        number = -number;
+    }
+    while (number > 0) 
+	{
+        number /= 10;
+        counter++;
+    }
+    return (counter);
+}
+
+// int main() {
+//     int number;
+
+//     // Solicitar al usuario que ingrese un número
+//     printf("Ingrese un número entero: ");
+//     scanf("%d", &number);
+
+//     // Llamada a la función para contar los dígitos
+//     int cantidadDigitos = ft_count_digits(number);
+
+//     // Imprimir el resultado
+//     printf("El número %d tiene %d dígito(s).\n", number, cantidadDigitos);
+
+//     return (0);
+// }
